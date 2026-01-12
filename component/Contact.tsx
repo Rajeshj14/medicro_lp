@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { MapPin, Phone, Mail, Send, MessageCircle } from 'lucide-react';
 
 export default function GrowMedicoContact() {
@@ -21,7 +21,7 @@ export default function GrowMedicoContact() {
     alert('Thank you! We will get back to you soon.');
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -140,7 +140,7 @@ export default function GrowMedicoContact() {
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    rows="5"
+                    rows={5}
                     className="w-full px-4 py-3 bg-gray-900/50 border border-teal-500/30 rounded-lg text-white placeholder-gray-500 focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 outline-none transition-all resize-none"
                     placeholder="Tell us about your practice and how we can help..."
                   ></textarea>

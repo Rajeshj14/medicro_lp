@@ -2,11 +2,13 @@
 
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import Logo from './medical_logo.webp';
+import { usePathname, useRouter } from 'next/navigation';
+import Link from 'next/link';
+// import Logo from './Logo';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
   const router = useRouter();
   
   const navItems = [
@@ -17,14 +19,13 @@ const Navbar = () => {
     { name: 'Contact us', path: '/contact' }
   ];
 
-  const handleNavigation = (path) => {
-    router.push(path);
-    setIsMenuOpen(false);
-  };
-
   const handleTalkToUs = () => {
     router.push('/contact');
     setIsMenuOpen(false);
+  };
+
+  const isActive = (path :string) => {
+    return pathname === path;
   };
 
   return (
@@ -37,13 +38,17 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8 items-center">
             {navItems.map((item) => (
-              <button
+              <Link
                 key={item.name}
-                onClick={() => handleNavigation(item.path)}
-                className="text-gray-300 hover:text-teal-400 transition-colors duration-200 bg-transparent border-none cursor-pointer text-base"
+                href={item.path}
+                className={`transition-colors duration-200 ${
+                  isActive(item.path)
+                    ? 'text-teal-400 font-semibold'
+                    : 'text-gray-300 hover:text-teal-400'
+                }`}
               >
                 {item.name}
-              </button>
+              </Link>
             ))}
             <div className="hidden lg:block">
               <button 
@@ -59,6 +64,7 @@ const Navbar = () => {
           <button
             className="md:hidden text-gray-300 hover:text-teal-400 bg-transparent border-none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
           >
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
@@ -69,17 +75,22 @@ const Navbar = () => {
           <div className="md:hidden py-4 border-t border-teal-500/20">
             <div className="flex flex-col space-y-4">
               {navItems.map((item) => (
-                <button
+                <Link
                   key={item.name}
-                  onClick={() => handleNavigation(item.path)}
-                  className="text-gray-300 hover:text-teal-400 transition-colors duration-200 py-2 text-left bg-transparent border-none"
+                  href={item.path}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`transition-colors duration-200 py-2 ${
+                    isActive(item.path)
+                      ? 'text-teal-400 font-semibold'
+                      : 'text-gray-300 hover:text-teal-400'
+                  }`}
                 >
                   {item.name}
-                </button>
+                </Link>
               ))}
               <button 
                 onClick={handleTalkToUs}
-                className="bg-gradient-to-r from-teal-400 to-cyan-400 text-white font-semibold px-6 py-3 rounded-md transition-all duration-200 shadow-lg w-full"
+                className="bg-gradient-to-r from-teal-400 to-cyan-400 text-white font-semibold px-6 py-3 rounded-md transition-all duration-200 shadow-lg w-full mt-4"
               >
                 Talk to Us
               </button>
