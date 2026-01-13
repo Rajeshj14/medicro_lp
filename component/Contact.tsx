@@ -29,23 +29,10 @@ export default function GrowMedicoContact() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-teal-900">
-
-      {/* Hero Section */}
-      <div className="relative overflow-hidden py-16 px-4">
-        <div className="absolute inset-0 bg-gradient-to-r from-teal-500/10 to-transparent"></div>
-        <div className="max-w-7xl mx-auto text-center relative z-10">
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
-            Got a Medical Practice to <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400">Grow?</span>
-          </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Can't wait to work with you! Shoot us an email with your info and what you need
-          </p>
-        </div>
-      </div>
+    <div id='contact' className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-teal-900">
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 py-10">
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Contact Form */}
           <div className="lg:col-span-2">
@@ -265,47 +252,6 @@ export default function GrowMedicoContact() {
           </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <footer className="bg-gray-900/80 border-t border-teal-500/20 py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <h4 className="text-xl font-bold text-white mb-4">GROW MEDICO</h4>
-              <p className="text-gray-400 text-sm">Empowering medical practices to reach their full potential</p>
-            </div>
-            <div>
-              <h5 className="text-white font-semibold mb-3">Quick Links</h5>
-              <ul className="space-y-2">
-                {['Home', 'About', 'Services', 'Contact us'].map((link) => (
-                  <li key={link}>
-                    <a href="#" className="text-gray-400 hover:text-teal-400 transition-colors text-sm">
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h5 className="text-white font-semibold mb-3">Legal</h5>
-              <ul className="space-y-2">
-                {['Terms and Conditions', 'Privacy Policy', 'Refund Policy'].map((link) => (
-                  <li key={link}>
-                    <a href="#" className="text-gray-400 hover:text-teal-400 transition-colors text-sm">
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 pt-6 text-center">
-            <p className="text-gray-500 text-sm">
-              Copyright © 2026 Grow Medico | Powered by Grow Medico
-            </p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

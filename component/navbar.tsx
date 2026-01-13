@@ -1,30 +1,31 @@
-'use client'
+"use client";
 
-import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
-import { usePathname, useRouter } from 'next/navigation';
-import Link from 'next/link';
+import React, { useState } from "react";
+import { Menu, X } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
 // import Logo from './Logo';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
-  
+
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'About us', path: '/about' },
-    { name: 'Our Services', path: '/services' },
-    { name: 'Careers', path: '/careers' },
-    { name: 'Contact us', path: '/contact' }
+    { name: "Home", path: "/" },
+    { name: "About us", path: "/about" },
+    { name: "Our Services", path: "/services" },
+    { name: "Careers", path: "/careers" },
+    { name: "Contact us", path: "/contact" },
   ];
 
   const handleTalkToUs = () => {
-    router.push('/contact');
+    router.push("/contact");
     setIsMenuOpen(false);
   };
 
-  const isActive = (path :string) => {
+  const isActive = (path: string) => {
     return pathname === path;
   };
 
@@ -33,7 +34,16 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo Section */}
-          {/* <Logo /> */}
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/medico_logo.webp"
+              alt="Company Logo"
+              width={160}
+              height={40}
+              priority
+              className="object-contain transition-transform duration-300 hover:scale-105"
+            />
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8 items-center">
@@ -43,17 +53,18 @@ const Navbar = () => {
                 href={item.path}
                 className={`transition-colors duration-200 ${
                   isActive(item.path)
-                    ? 'text-teal-400 font-semibold'
-                    : 'text-gray-300 hover:text-teal-400'
+                    ? "text-teal-400 font-semibold"
+                    : "text-gray-300 hover:text-teal-400"
                 }`}
               >
                 {item.name}
               </Link>
             ))}
+
             <div className="hidden lg:block">
-              <button 
+              <button
                 onClick={handleTalkToUs}
-                className="bg-gradient-to-r from-teal-400 to-cyan-400 hover:to-cyan-400 hover:from-teal-400 text-white font-semibold px-6 py-3 rounded-md transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+                className="bg-gradient-to-r from-teal-400 to-cyan-400 text-white font-semibold px-6 py-3 rounded-md transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 Talk to Us
               </button>
@@ -81,14 +92,14 @@ const Navbar = () => {
                   onClick={() => setIsMenuOpen(false)}
                   className={`transition-colors duration-200 py-2 ${
                     isActive(item.path)
-                      ? 'text-teal-400 font-semibold'
-                      : 'text-gray-300 hover:text-teal-400'
+                      ? "text-teal-400 font-semibold"
+                      : "text-gray-300 hover:text-teal-400"
                   }`}
                 >
                   {item.name}
                 </Link>
               ))}
-              <button 
+              <button
                 onClick={handleTalkToUs}
                 className="bg-gradient-to-r from-teal-400 to-cyan-400 text-white font-semibold px-6 py-3 rounded-md transition-all duration-200 shadow-lg w-full mt-4"
               >
